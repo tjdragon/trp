@@ -1,4 +1,4 @@
-## Travel Rule Protocol
+# Travel Rule Protocol 1.1
 
 The [Travel Rule working group](https://www.travelruleprotocol.org/) was primarily established to address a specific recommendation issued by the Financial Action Task Force (“FATF”).
 This set of standards aim to meet the requirements set by the FATF Recommendation 16 (R16).  
@@ -247,3 +247,9 @@ def load_ec_private_key(id: str) -> ec.EllipticCurvePrivateKey:
      ec_privatekey = load_der_private_key(key_data, password=None, backend=default_backend())
      return ec_privatekey
 ```
+
+# Travel Rule Protocol 1.2
+
+## Sequence diagram
+
+![LINURL](./imgs/linurl-trp.png)

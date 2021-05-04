@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor SENDING_USER #lightblue
+entity VASP_ORIGINATOR #blue
+
+actor RECEIVING_USER #lightgreen
+entity VASP_BENEFICIARY #purple
+
+entity BLOCKCHAIN #red
+
+autonumber
+
+alt LINURL Flow to transfer from Originating VASP to Beneficiary VASP
+
+RECEIVING_USER -> VASP_BENEFICIARY: Receiving Request\nI want to receive funds\nfor BTC
+note right: No need for additional data
+
+VASP_BENEFICIARY -> RECEIVING_USER: Returns LNURL\nhttps://..../...
+note right: bech32 encoded endpoint
+RECEIVING_USER -> SENDING_USER: Provides LNURL
+
+SENDING_USER -> VASP_ORIGINATOR: Initiates transfer\nwith LNURL
+VASP_ORIGINATOR -> VASP_BENEFICIARY: Call LNURL
+VASP_BENEFICIARY -> VASP_ORIGINATOR: Address + KYC data
+note right: KYC data optional as per 1.1
+VASP_ORIGINATOR --> VASP_ORIGINATOR: KYC checks
+VASP_ORIGINATOR -> BLOCKCHAIN: On-chain transfer
+VASP_ORIGINATOR -> VASP_BENEFICIARY: TRP 1.1 /transfer-notification
+end
+
+@enduml

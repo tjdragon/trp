@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity VASP_ORIGINATOR #blue
+entity VASP_BENEFICIARY #purple
+
+alt Address Query
+VASP_ORIGINATOR -> VASP_BENEFICIARY: GET /assets/ETH/addresses/0x00000000219ab540356cBB839Cbe05303d7705Fa
+VASP_BENEFICIARY -> VASP_ORIGINATOR: HTTP 200
+end
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+entity VASP_ORIGINATOR #blue
+entity VASP_BENEFICIARY #purple
+
+alt Transfer Notice
+VASP_ORIGINATOR -> VASP_BENEFICIARY: POST /assets/ETH/transactions\n**IVMS101** JSON Payload
+VASP_BENEFICIARY -> VASP_ORIGINATOR: HTTP 200
+end
+
+@enduml
